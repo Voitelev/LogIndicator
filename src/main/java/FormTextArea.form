@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="FormTextArea">
+  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="633" height="800"/>
+    </constraints>
+    <properties>
+      <enabled value="true"/>
+      <minimumSize width="600" height="800"/>
+      <name value="panel1"/>
+      <preferredSize width="600" height="600"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <scrollpane id="c39b0" binding="ScrollPanel">
+        <constraints border-constraint="Center"/>
+        <properties>
+          <autoscrolls value="false"/>
+          <enabled value="false"/>
+          <focusable value="true"/>
+          <verticalScrollBarPolicy value="22"/>
+          <wheelScrollingEnabled value="true"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="af441" class="javax.swing.JList" binding="list1" default-binding="true">
+            <constraints/>
+            <properties/>
+          </component>
+        </children>
+      </scrollpane>
+      <grid id="2ff59" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
+        <constraints border-constraint="North"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="478bc" class="javax.swing.JButton" binding="searchBackButton">
+            <constraints/>
+            <properties>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="11"/>
+              <text value="Искать назад"/>
+            </properties>
+          </component>
+          <component id="1e16" class="javax.swing.JComboBox" binding="LevelLogComboBox">
+            <constraints/>
+            <properties>
+              <focusable value="false"/>
+              <minimumSize width="100" height="30"/>
+              <model>
+                <item value="ERORR"/>
+                <item value="WARN"/>
+                <item value="DEBUG"/>
+                <item value="INFO"/>
+                <item value="ERROR"/>
+              </model>
+              <popupVisible value="false"/>
+              <visible value="true"/>
+            </properties>
+          </component>
+          <component id="b1192" class="javax.swing.JButton" binding="searchForwardButton">
+            <constraints/>
+            <properties>
+              <label value="Искать дальше"/>
+              <text value="Искать дальше"/>
+            </properties>
+          </component>
+          <component id="a563f" class="javax.swing.JButton" binding="searchButton">
+            <constraints/>
+            <properties>
+              <text value="Поиск"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
