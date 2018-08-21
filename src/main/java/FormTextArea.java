@@ -7,6 +7,10 @@ import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class FormTextArea extends javax.swing.JDialog {
   private JPanel panel1;
@@ -18,11 +22,13 @@ public class FormTextArea extends javax.swing.JDialog {
   private JComboBox LevelLogComboBox;
   private JButton searchForwardButton;
   private JButton searchButton;
+  private JTextField textFieldData;
   private DefaultListModel listModel;
   private int previousPositionCursor = 0;
   private int sizeFile;
   private PrinterFile printerFile;
   private SearchByLevelLog searchByLevelLog;
+  private Date searchDate;
 
 
   FormTextArea() throws FileNotFoundException {
@@ -54,7 +60,15 @@ public class FormTextArea extends javax.swing.JDialog {
       @Override
       public void actionPerformed(ActionEvent e) {
         try {
-          searchByLevelLog.searchLevelLog((String) LevelLogComboBox.getSelectedItem());
+          String stringDate = textFieldData.getText();
+          String stringDateFormat = "yyyy-MM-dd";
+          SimpleDateFormat format = new SimpleDateFormat(stringDateFormat, Locale.US);
+          try {
+            searchDate = format.parse(stringDate);
+          } catch (ParseException e1) {
+            e1.printStackTrace();
+          }
+          searchByLevelLog.searchLevelLog((String) LevelLogComboBox.getSelectedItem(), searchDate);
         } catch (IOException e1) {
           e1.printStackTrace();
         }
@@ -77,7 +91,7 @@ public class FormTextArea extends javax.swing.JDialog {
   public class ListenAdditionsScrolled implements ChangeListener {
     public void stateChanged(ChangeEvent e) {
       int extent = ScrollPanel.getVerticalScrollBar().getModel().getExtent();
-            if (ScrollPanel.getVerticalScrollBar().getValue() + extent == ScrollPanel.getVerticalScrollBar().getMaximum()
+      if (ScrollPanel.getVerticalScrollBar().getValue() + extent == ScrollPanel.getVerticalScrollBar().getMaximum()
               && ScrollPanel.getVerticalScrollBar().getValue() != 0) {
         try {
           DefaultListModel listModel = (DefaultListModel) list1.getModel();
@@ -96,8 +110,8 @@ public class FormTextArea extends javax.swing.JDialog {
           listModel.removeAllElements();
           list1.removeAll();
           panel1.revalidate();
-          printerFile.outputTextDown( listModel);
-          ScrollPanel.getVerticalScrollBar().setValue( ScrollPanel.getVerticalScrollBar().getMaximum() - extent - 1);
+          printerFile.outputTextDown(listModel);
+          ScrollPanel.getVerticalScrollBar().setValue(ScrollPanel.getVerticalScrollBar().getMaximum() - extent - 1);
           System.out.println("я добавил вверх");
         }
       } catch (IOException e1) {
@@ -110,7 +124,8 @@ public class FormTextArea extends javax.swing.JDialog {
     printerFile.outputText(50000, listModel);
 
   }
-  public String getSelectedItem(){
+
+  public String getSelectedItem() {
     return (String) LevelLogComboBox.getSelectedItem();
   }
 

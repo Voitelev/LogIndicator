@@ -65,6 +65,12 @@
               <text value="Искать дальше"/>
             </properties>
           </component>
+          <component id="34ef2" class="javax.swing.JTextField" binding="textFieldData">
+            <constraints/>
+            <properties>
+              <text value="Введите дату"/>
+            </properties>
+          </component>
           <component id="a563f" class="javax.swing.JButton" binding="searchButton">
             <constraints/>
             <properties>
